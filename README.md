@@ -1,3 +1,28 @@
+# Goal
+ - [ ] Create a front-end UI that mimics Instagram DM capabilities by using React.
+ - [ ] It aims to operate without a back-end using hard-coded data.
+# Requirements
+ - [ ] Message list
+    - [ ] Displays the profile picture, name, recent message, and readability of each contact.
+    - [ ] Click to go to the appropriate conversation.
+ - [ ] Conversation Interface
+    - [ ] Displays messages in chronological order.
+    - [ ] Separate messages sent and received in different styles.
+    - [ ] Implement a message input window and include a message send button.
+    - [ ] Message Delete Features
+    - [ ] The message you entered at the time of sending will be added to the screen in real time.
+    - [ ] Implement read marks on each message.
+ - [ ] Image/File
+    - [ ] Up to five images can be transmitted at a time.
+    - [ ] Documents such as PDF and WORD can be transmitted.
+    - [ ] Images or documents can be downloaded.
+- [ ] Library
+    - Any license that can be used for commercial purposes can be used.
+    - [ ] Please record the library you used.
+- [ ] Design
+    - Normally, designs are provided through Figma, but currently, there is nothing prepared.
+    - [ ] Therefore, for this task only, create the design by mimicking Instagram's DM.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -17,20 +42,3 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

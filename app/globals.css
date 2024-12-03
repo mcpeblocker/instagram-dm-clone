@@ -6,6 +6,8 @@
   --primary: #ffffff;
   --contrast: #000000;
   --secondary: #65676b;
+  --plain: #dbdbdb;
+  --highlight: #0095F6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +15,8 @@
     --primary: #000000;
     --contrast: #ffffff;
     --secondary: #8a8d91;
+    --plain: #262626;
+    --highlight: #0095F6;
   }
 }
 
@@ -20,4 +24,8 @@ body {
   color: var(--contrast);
   background: var(--primary);
   font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* {
+  scrollbar-color: #686868 #424242;
 }

@@ -7,7 +7,7 @@ export default function Home() {
       <h1 className="text-xl font-bold text-contrast">{title}</h1>
       <p className="text-md text-secondary">{description}</p>
       <Link
-        href="/direct/inbox"
+        href="/direct"
         className="bg-contrast text-primary rounded-md p-3 text-xl font-bold hover:bg-secondary transition-all"
       >
         Go to Inbox

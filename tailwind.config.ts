@@ -12,6 +12,8 @@ export default {
         primary: "var(--primary)",
         contrast: "var(--contrast)",
         secondary: "var(--secondary)",
+        plain: "var(--plain)",
+        highlight: "var(--highlight)",
       },
     },
   },

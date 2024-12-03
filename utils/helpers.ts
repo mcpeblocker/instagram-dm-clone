@@ -2,9 +2,9 @@ import { User } from "./types";
 
 const MAX_LENGTH = 25;
 
-export const trimMessage = (message: string) => {
-    return message.length > MAX_LENGTH
-        ? message.slice(0, MAX_LENGTH) + "..."
+export const trimContent = (message: string, maxLength = MAX_LENGTH) => {
+    return message.length > maxLength
+        ? message.slice(0, maxLength) + "..."
         : message;
 };
 
@@ -13,7 +13,7 @@ export const getOtherMembers = (members: User[], me: User) => members.filter((me
 export const getChatTitle = (members: User[], me: User) => {
     const otherMembers = getOtherMembers(members, me);
     return members.length > 2
-        ? trimMessage(otherMembers.map((member) => member.name).join(" & "))
+        ? trimContent(otherMembers.map((member) => member.name).join(" & "))
         : otherMembers[0].name;
 }
 
@@ -44,4 +44,14 @@ export const formatSinceDate = (date: Date) => {
 
 export const formatTime = (date: Date) => {
     return date.toLocaleString([], { hour: "numeric", minute: "2-digit" });
+}
+
+export const formatFileSize = (size: number) => {
+    if (size < 1024) {
+        return `${size} B`;
+    }
+    if (size < 1024 * 1024) {
+        return `${(size / 1024).toFixed(1)} KB`;
+    }
+    return `${(size / 1024 / 1024).toFixed(1)} MB`;
 }

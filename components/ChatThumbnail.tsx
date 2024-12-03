@@ -1,6 +1,6 @@
 import { ThumbnailChat } from "@/utils/types";
 import Avatar from "./Avatar";
-import { formatSinceDate, getChatTitle, trimMessage } from "@/utils/helpers";
+import { formatSinceDate, getChatTitle, trimContent } from "@/utils/helpers";
 
 interface ChatThumbnailProps {
   chat: ThumbnailChat;
@@ -16,7 +16,7 @@ export default function ChatThumbnail(props: ChatThumbnailProps) {
   const chatTitle = getChatTitle(members, me);
 
   const messagePreview = lastMessage
-    ? trimMessage(lastMessage.content)
+    ? trimContent(lastMessage.content)
     : "Start a conversation";
 
   const sinceDate = lastMessage ? formatSinceDate(lastMessage.createdAt) : "";

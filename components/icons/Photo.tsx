@@ -1,4 +1,4 @@
-export default function AddPhoto() {
+export default function Photo() {
   return (
     <svg
       viewBox="0 0 24 24"

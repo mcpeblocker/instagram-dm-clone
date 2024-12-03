@@ -1,4 +1,4 @@
-export default function AddFile() {
+export default function File() {
   return (
     <svg
       className="feather feather-file-text"

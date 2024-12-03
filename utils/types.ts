@@ -23,7 +23,11 @@ export type Message = {
     chatId: string;
     content: string;
     createdAt: Date;
-    status: MessageStatus
+    status: MessageStatus;
+    file: File | null;
+    images: File[] | null;
 }
+
+export type IncomingMessage = Pick<Message, "content" | "file" | "images">;
 
 export type ChatEntity = Message | Date;

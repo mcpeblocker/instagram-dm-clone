@@ -59,6 +59,8 @@ const chat1Messages: Message[] = [
         content: "Hello, Steve!",
         createdAt: new Date("2024-12-03T12:00:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 2,
@@ -67,6 +69,8 @@ const chat1Messages: Message[] = [
         content: "Hi, John!",
         createdAt: new Date("2024-12-03T12:01:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 3,
@@ -75,6 +79,8 @@ const chat1Messages: Message[] = [
         content: "How are you?",
         createdAt: new Date("2024-12-03T12:02:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 4,
@@ -83,6 +89,8 @@ const chat1Messages: Message[] = [
         content: "I'm good, thanks!",
         createdAt: new Date("2024-12-03T12:02:25"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 5,
@@ -91,6 +99,8 @@ const chat1Messages: Message[] = [
         content: "How about you?",
         createdAt: new Date("2024-12-03T12:02:40"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 6,
@@ -99,6 +109,8 @@ const chat1Messages: Message[] = [
         content: "I'm good too!",
         createdAt: new Date("2024-12-03T12:03:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 7,
@@ -107,6 +119,8 @@ const chat1Messages: Message[] = [
         content: "Great!",
         createdAt: new Date("2024-12-03T12:03:30"),
         status: "delivered",
+        file: null,
+        images: null,
     }
 ]
 
@@ -122,6 +136,8 @@ const chat2Messages: Message[] = [
         content: "Hello, everyone!",
         createdAt: new Date("2024-12-03T12:05:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 9,
@@ -130,6 +146,8 @@ const chat2Messages: Message[] = [
         content: "Hi, John!",
         createdAt: new Date("2024-12-03T12:05:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 10,
@@ -138,6 +156,8 @@ const chat2Messages: Message[] = [
         content: "Hello!",
         createdAt: new Date("2024-12-03T12:06:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 11,
@@ -146,6 +166,8 @@ const chat2Messages: Message[] = [
         content: "Hi, everyone!",
         createdAt: new Date("2024-12-03T12:06:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 12,
@@ -154,6 +176,8 @@ const chat2Messages: Message[] = [
         content: "How are you?",
         createdAt: new Date("2024-12-03T12:07:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 13,
@@ -162,6 +186,8 @@ const chat2Messages: Message[] = [
         content: "I'm good, thanks!",
         createdAt: new Date("2024-12-03T12:07:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 14,
@@ -170,6 +196,8 @@ const chat2Messages: Message[] = [
         content: "I'm good too!",
         createdAt: new Date("2024-12-03T12:08:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 15,
@@ -178,6 +206,8 @@ const chat2Messages: Message[] = [
         content: "Doing amazing!",
         createdAt: new Date("2024-12-03T12:08:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 16,
@@ -185,7 +215,9 @@ const chat2Messages: Message[] = [
         chatId: chat2.id,
         content: "Great!",
         createdAt: new Date("2024-12-03T12:09:00"),
-        status: "delivered"
+        status: "delivered",
+        file: null,
+        images: null,
     }
 ]
 
@@ -201,6 +233,8 @@ const chat3Messages: Message[] = [
         content: "Hi, Steve!",
         createdAt: new Date("2024-12-03T12:10:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 18,
@@ -209,6 +243,8 @@ const chat3Messages: Message[] = [
         content: "Hello, Jane!",
         createdAt: new Date("2024-12-03T12:10:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 19,
@@ -217,6 +253,8 @@ const chat3Messages: Message[] = [
         content: "How are you?",
         createdAt: new Date("2024-12-03T12:11:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 20,
@@ -225,6 +263,8 @@ const chat3Messages: Message[] = [
         content: "I'm good, thanks!",
         createdAt: new Date("2024-12-03T12:11:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 21,
@@ -232,7 +272,9 @@ const chat3Messages: Message[] = [
         chatId: chat3.id,
         content: "Did you finish the assignment?",
         createdAt: new Date("2024-12-03T12:12:00"),
-        status: "delivered"
+        status: "delivered",
+        file: null,
+        images: null,
     }
 ]
 
@@ -248,6 +290,8 @@ const chat4Messages: Message[] = [
         content: "Hi, Steve!",
         createdAt: new Date("2024-12-03T12:15:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 23,
@@ -256,6 +300,8 @@ const chat4Messages: Message[] = [
         content: "Hello, Mary!",
         createdAt: new Date("2024-12-03T12:15:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 24,
@@ -264,6 +310,8 @@ const chat4Messages: Message[] = [
         content: "How are you?",
         createdAt: new Date("2024-12-03T12:16:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 25,
@@ -272,6 +320,8 @@ const chat4Messages: Message[] = [
         content: "I'm good, thanks!",
         createdAt: new Date("2024-12-03T12:16:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 26,
@@ -279,7 +329,9 @@ const chat4Messages: Message[] = [
         chatId: chat4.id,
         content: "Did you finish the report?",
         createdAt: new Date("2024-12-03T12:17:00"),
-        status: "delivered"
+        status: "delivered",
+        file: null,
+        images: null,
     }
 ]
 
@@ -295,6 +347,8 @@ const chat5Messages: Message[] = [
         content: "Hi, Steve!",
         createdAt: new Date("2024-12-03T12:20:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 28,
@@ -303,6 +357,8 @@ const chat5Messages: Message[] = [
         content: "Hello, Kate!",
         createdAt: new Date("2024-12-03T12:20:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 29,
@@ -311,6 +367,8 @@ const chat5Messages: Message[] = [
         content: "How are you?",
         createdAt: new Date("2024-12-03T12:21:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 30,
@@ -319,6 +377,8 @@ const chat5Messages: Message[] = [
         content: "I'm good, thanks!",
         createdAt: new Date("2024-12-03T12:21:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 31,
@@ -326,7 +386,9 @@ const chat5Messages: Message[] = [
         chatId: chat5.id,
         content: "Did you finish the presentation?",
         createdAt: new Date("2024-12-03T12:22:00"),
-        status: "delivered"
+        status: "delivered",
+        file: null,
+        images: null,
     }
 ]
 
@@ -342,6 +404,8 @@ const chat6Messages: Message[] = [
         content: "Hi, Steve!",
         createdAt: new Date("2024-12-03T12:25:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 33,
@@ -350,6 +414,8 @@ const chat6Messages: Message[] = [
         content: "Hello, Tom!",
         createdAt: new Date("2024-12-03T12:25:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 34,
@@ -358,6 +424,8 @@ const chat6Messages: Message[] = [
         content: "I need your help with something.",
         createdAt: new Date("2024-12-03T12:26:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 35,
@@ -366,6 +434,8 @@ const chat6Messages: Message[] = [
         content: "Sure, what is it?",
         createdAt: new Date("2024-12-03T12:26:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 36,
@@ -374,6 +444,8 @@ const chat6Messages: Message[] = [
         content: "I will tell you later when we meet.",
         createdAt: new Date("2024-12-03T12:27:00"),
         status: "read",
+        file: null,
+        images: null,
     }
 ]
 
@@ -389,6 +461,8 @@ const chat7Messages: Message[] = [
         content: "Hi, Steve!",
         createdAt: new Date("2024-12-03T12:30:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 38,
@@ -397,6 +471,8 @@ const chat7Messages: Message[] = [
         content: "Oh, look who's here!",
         createdAt: new Date("2024-12-03T12:30:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 39,
@@ -405,6 +481,8 @@ const chat7Messages: Message[] = [
         content: "How are you?",
         createdAt: new Date("2024-12-03T12:31:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 40,
@@ -413,6 +491,8 @@ const chat7Messages: Message[] = [
         content: "All good, thanks!",
         createdAt: new Date("2024-12-03T12:31:30"),
         status: "read",
+        file: null,
+        images: null,
     }
 ]
 
@@ -428,6 +508,8 @@ const chat8Messages: Message[] = [
         content: "Let's meet tomorrow.",
         createdAt: new Date("2024-12-03T12:35:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 42,
@@ -436,6 +518,8 @@ const chat8Messages: Message[] = [
         content: "Do I know you?",
         createdAt: new Date("2024-12-03T12:35:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 43,
@@ -444,6 +528,8 @@ const chat8Messages: Message[] = [
         content: "You forgot already?",
         createdAt: new Date("2024-12-03T12:36:00"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 44,
@@ -452,6 +538,8 @@ const chat8Messages: Message[] = [
         content: "I don't think I'm supposed to know you.",
         createdAt: new Date("2024-12-03T12:36:30"),
         status: "read",
+        file: null,
+        images: null,
     },
     {
         id: 45,
@@ -459,7 +547,9 @@ const chat8Messages: Message[] = [
         chatId: chat8.id,
         content: "We'll see about that...",
         createdAt: new Date("2024-12-03T12:37:00"),
-        status: "delivered"
+        status: "delivered",
+        file: null,
+        images: null,
     },
     {
         id: 46,
@@ -467,7 +557,9 @@ const chat8Messages: Message[] = [
         chatId: chat8.id,
         content: "You'll remember soon.",
         createdAt: new Date("2024-12-03T12:37:30"),
-        status: "delivered"
+        status: "delivered",
+        file: null,
+        images: null,
     }
 ]
 

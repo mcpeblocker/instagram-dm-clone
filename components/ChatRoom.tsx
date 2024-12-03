@@ -1,4 +1,4 @@
-import { Chat, User, Message } from "@/utils/types";
+import { Chat, User, Message, IncomingMessage } from "@/utils/types";
 import Avatar from "./Avatar";
 import { getChatTitle } from "@/utils/helpers";
 import { Messages } from "./Messages";
@@ -27,11 +27,13 @@ export default function ChatRoom(props: ChatRoomProps) {
     api.getMessages(props.chat).then(setMessages);
   }, [props.chat]);
 
-  const handleMessageSend = (content: string) => {
-    api.sendMessage(content, props.chat, props.me).then((newMessage) => {
-      setMessages([...messages, newMessage]);
-      props.onNewMessage(newMessage);
-    });
+  const handleMessageSend = (incomingMessage: IncomingMessage) => {
+    api
+      .sendMessage(incomingMessage, props.chat, props.me)
+      .then((newMessage) => {
+        setMessages([...messages, newMessage]);
+        props.onNewMessage(newMessage);
+      });
   };
 
   const handleMessageDelete = (message: Message) => {
@@ -55,9 +57,8 @@ export default function ChatRoom(props: ChatRoomProps) {
           {getChatTitle(props.chat.members, props.me)}
         </span>
       </div>
-      {/* <div className="flex-1 overflow-y-hidden flex flex-col"> */}
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto flex flex-col justify-end">
+      <div className="flex-grow overflow-y-auto">
         <Messages
           messages={sortedMessages}
           chat={props.chat}

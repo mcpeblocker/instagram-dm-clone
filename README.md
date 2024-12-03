@@ -27,10 +27,10 @@
   - [x] Message Delete Features
   - [x] The message you entered at the time of sending will be added to the screen in real time.
   - [x] Implement read marks on each message.
-- [ ] Image/File
-  - [ ] Up to five images can be transmitted at a time.
-  - [ ] Documents such as PDF and WORD can be transmitted.
-  - [ ] Images or documents can be downloaded.
+- [x] Image/File
+  - [x] Up to five images can be transmitted at a time.
+  - [x] Documents such as PDF and WORD can be transmitted.
+  - [x] Images or documents can be downloaded.
 - [x] Library
   - Any license that can be used for commercial purposes can be used.
   - [x] Please record the library you used.

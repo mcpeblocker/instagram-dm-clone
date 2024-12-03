@@ -1,5 +1,5 @@
 import data from "./data";
-import { Chat, User, Message } from "./types";
+import { Chat, User, Message, IncomingMessage } from "./types";
 
 // All api calls return hard-coded data
 // Assuming all calls result in success
@@ -32,7 +32,7 @@ function getLatestMessageId(messages: Message[]): number {
     return Math.max(...messages.map((m) => m.id));
 }
 
-async function sendMessage(content: string, chat: Chat, me: User): Promise<Message> {
+async function sendMessage({ content, file, images }: IncomingMessage, chat: Chat, me: User): Promise<Message> {
     // await wait();
     const newMessage: Message = {
         id: getLatestMessageId(data.messages) + 1,
@@ -41,6 +41,8 @@ async function sendMessage(content: string, chat: Chat, me: User): Promise<Messa
         content,
         createdAt: new Date(),
         status: "delivered",
+        file,
+        images,
     };
     data.messages.push(newMessage);
     return newMessage;

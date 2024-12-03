@@ -79,7 +79,12 @@ export default function Inbox() {
     const chat = thumbnailChats[index];
     if (!chat) return;
     try {
-      if (chat.lastMessage?.status === "delivered") {
+      if (
+        chat.lastMessage &&
+        me &&
+        chat.lastMessage.authorId !== me.id &&
+        chat.lastMessage.status === "delivered"
+      ) {
         await api.markAsRead(chat.lastMessage);
       }
     } finally {

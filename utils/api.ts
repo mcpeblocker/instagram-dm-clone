@@ -51,6 +51,14 @@ async function deleteMessage(message: Message): Promise<void> {
     data.messages = data.messages.filter((m) => m.id !== message.id);
 }
 
+async function markAsRead(message: Message): Promise<void> {
+    // await wait();
+    const index = data.messages.findIndex((m) => m.id === message.id);
+    if (index !== -1) {
+        data.messages[index].status = "read";
+    }
+}
+
 // Utility function to simulate time delay
 async function wait(seconds: number = 1) {
     return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
@@ -62,7 +70,8 @@ const api = {
     getLastMessage,
     getMessages,
     sendMessage,
-    deleteMessage
+    deleteMessage,
+    markAsRead,
 };
 
 export default api;

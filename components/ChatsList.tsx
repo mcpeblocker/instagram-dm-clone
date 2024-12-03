@@ -9,7 +9,7 @@ interface ChatsListProps {
 
 export default function ChatsList(props: ChatsListProps) {
   return (
-    <div className="flex flex-col gap-4 p-4 overflow-y-auto">
+    <div className="h-full overflow-y-auto flex flex-col gap-4 p-4">
       <div className="w-full">
         <span className="font-bold">Messages</span>
       </div>

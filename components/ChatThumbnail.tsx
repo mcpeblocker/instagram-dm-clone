@@ -1,6 +1,6 @@
 import { ThumbnailChat } from "@/utils/types";
 import Avatar from "./Avatar";
-import { getChatTitle, trimMessage } from "@/utils/helpers";
+import { formatSinceDate, getChatTitle, trimMessage } from "@/utils/helpers";
 
 interface ChatThumbnailProps {
   chat: ThumbnailChat;
@@ -9,12 +9,17 @@ interface ChatThumbnailProps {
 
 export default function ChatThumbnail(props: ChatThumbnailProps) {
   const { lastMessage, me, members } = props.chat;
-  const isUnread = lastMessage && lastMessage.status !== "read";
+  const isUnread =
+    lastMessage &&
+    lastMessage.authorId !== me.id &&
+    lastMessage.status !== "read";
   const chatTitle = getChatTitle(members, me);
 
   const messagePreview = lastMessage
     ? trimMessage(lastMessage.content)
     : "Start a conversation";
+
+  const sinceDate = lastMessage ? formatSinceDate(lastMessage.createdAt) : "";
 
   return (
     <div
@@ -26,8 +31,11 @@ export default function ChatThumbnail(props: ChatThumbnailProps) {
         <p className={`text-md ${isUnread ? "font-semibold" : ""}`}>
           {chatTitle}
         </p>
-        <p className={`${isUnread ? "font-bold text-sm" : "text-xs"}`}>
+        <p className={`text-xs ${isUnread ? "font-semibold" : ""}`}>
           {messagePreview}
+          {lastMessage && (
+            <span className="text-secondary text-xs"> • {sinceDate}</span>
+          )}
         </p>
       </div>
       <span

@@ -1,6 +1,6 @@
 import { User } from "./types";
 
-const MAX_LENGTH = 35;
+const MAX_LENGTH = 25;
 
 export const trimMessage = (message: string) => {
     return message.length > MAX_LENGTH
@@ -25,6 +25,21 @@ export const isInSameDay = (date1: Date, date2: Date) => {
 
 export const formatDate = (date: Date) => {
     return date.toLocaleString([], { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" });
+}
+
+export const formatSinceDate = (date: Date) => {
+    const now = new Date();
+    const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+    if (seconds < 60) {
+        return "Just now";
+    }
+    if (seconds < 3600) {
+        return `${Math.floor(seconds / 60)}m`;
+    }
+    if (seconds < 86400) {
+        return `${Math.floor(seconds / 3600)}h`;
+    }
+    return `${Math.floor(seconds / 86400)}d`;
 }
 
 export const formatTime = (date: Date) => {

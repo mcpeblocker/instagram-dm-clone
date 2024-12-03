@@ -11,6 +11,7 @@ interface ChatRoomProps {
   chat: Chat;
   me: User;
   onBack: () => void;
+  onNewMessage: (message: Message) => void;
 }
 
 export default function ChatRoom(props: ChatRoomProps) {
@@ -29,6 +30,7 @@ export default function ChatRoom(props: ChatRoomProps) {
   const handleMessageSend = (content: string) => {
     api.sendMessage(content, props.chat, props.me).then((newMessage) => {
       setMessages([...messages, newMessage]);
+      props.onNewMessage(newMessage);
     });
   };
 

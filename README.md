@@ -6,6 +6,8 @@
 - Dark and light mode colors are supported depending on system theme
 - The UI is mobile-responsive
 - Message sending failure cases are not handled in this codebase.
+- The UI is not exactly identical to Instagram, however the requirements are met by it.
+- Realtime transfer of data between multiple clients is **not supported** (WebSockets)
 - Each message can be either of the two below:
   - "delivered": Author pressed send button and the message has been delivered to the chat.
   - "read": Any other member of the chat (excluding author himself) has read the message by opening chat.
@@ -55,5 +57,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.

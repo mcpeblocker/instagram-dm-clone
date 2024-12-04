@@ -7,7 +7,7 @@ import api from "@/utils/api";
 import { ThumbnailChat } from "@/utils/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import ChatRoom from "@/components/ChatRoom";
-import Messenger from "@/components/icons/Messenger";
+import { NoChatRoom } from "./NoChatRoom";
 
 export default function Inbox() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -141,23 +141,9 @@ export default function Inbox() {
             onNewMessage={handleNewChatMessage}
           />
         ) : (
-          <NoChatRoomSelected />
+          <NoChatRoom />
         )}
       </div>
-    </div>
-  );
-}
-
-function NoChatRoomSelected() {
-  return (
-    <div className="flex flex-col gap-1 justify-center items-center h-full">
-      <div className="my-2 border-2 border-contrast rounded-full p-5">
-        <Messenger />
-      </div>
-      <span className="text-xl">Your messages</span>
-      <span className="text-sm text-secondary">
-        Send a message to start a chat.
-      </span>
     </div>
   );
 }

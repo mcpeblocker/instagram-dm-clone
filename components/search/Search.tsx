@@ -3,8 +3,8 @@ import { TSearchResult, TUser } from "@/utils/types";
 import api from "@/utils/api";
 import LeftArrow from "@/components/icons/LeftArrow";
 import TextButton from "@/components/common/TextButton";
-import SearchInput from "@/components/SearchInput";
-import UserInfo from "@/components/UserInfo";
+import SearchInput from "@/components/search/SearchInput";
+import UserInfo from "@/components/search/UserInfo";
 
 interface SearchProps {
   me: TUser;

@@ -8,7 +8,7 @@ import api from "@/utils/api";
 import ChatRoom from "@/components/chatroom/ChatRoom";
 import NoChatRoom from "@/components/NoChatRoom";
 import Inbox from "@/components/inbox/Inbox";
-import Search from "@/components/Search";
+import Search from "@/components/search/Search";
 import ExitConfirmation from "@/components/ExitConfirmation";
 
 export default function Direct() {

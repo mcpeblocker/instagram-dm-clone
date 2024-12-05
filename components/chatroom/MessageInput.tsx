@@ -14,8 +14,11 @@ export default function MessageInput(props: MessageInputProps) {
   const [text, setText] = useState("");
   const [attachedFiles, setAttachedFiles] = useState<TAttachment[]>([]);
 
-  const handleText = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const text = e.target.value;
     setText(e.target.value);
+    const rowsLength = text.split("\n").length;
+    e.target.rows = rowsLength > 4 ? 4 : rowsLength;
   };
 
   const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -76,9 +79,9 @@ export default function MessageInput(props: MessageInputProps) {
         </div>
       </div>
       {/* Input (always displayed) */}
-      <div className="w-full flex items-center gap-2 p-2">
+      <div className="w-full flex items-end gap-2 p-2">
         <div
-          className="bg-secondary-bg p-2 rounded-full cursor-pointer hover:opacity-60"
+          className="bg-secondary-bg p-2 my-1 rounded-full cursor-pointer hover:opacity-60"
           title="Add File"
         >
           <label className="cursor-pointer" htmlFor="upload-file">
@@ -93,10 +96,10 @@ export default function MessageInput(props: MessageInputProps) {
             onChange={handleFile}
           />
         </div>
-        <input
-          className="flex-grow outline-none border-none rounded-md bg-secondary-bg p-2 text-sm"
+        <textarea
+          className="flex-grow outline-none border-none rounded-md bg-secondary-bg p-2 text-sm resize-none"
           value={text}
-          type="text"
+          rows={1}
           name="text"
           // en: Send message
           placeholder="메세지 보내기"

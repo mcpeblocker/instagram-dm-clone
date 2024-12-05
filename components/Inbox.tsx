@@ -15,7 +15,7 @@ interface InboxProps {
 export default function Inbox(props: InboxProps) {
   const router = useRouter();
 
-  const handleBack = router.back;
+  const handleBack = () => router.push("/");
 
   return (
     <>

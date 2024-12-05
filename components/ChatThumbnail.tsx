@@ -9,7 +9,11 @@ interface ChatThumbnailProps {
 }
 
 export default function ChatThumbnail(props: ChatThumbnailProps) {
-  const { lastMessage, me, otherUser } = props.thumbnail;
+  const {
+    lastMessage,
+    me,
+    chat: { otherUser },
+  } = props.thumbnail;
   const isUnread =
     lastMessage &&
     lastMessage.authorId !== me.id &&
@@ -17,9 +21,10 @@ export default function ChatThumbnail(props: ChatThumbnailProps) {
   const chatTitle = trimContent(otherUser.name);
   const chatSubtitle = trimContent(otherUser.department);
 
-  const messagePreview = lastMessage
-    ? trimContent(lastMessage.content)
-    : "대화를 시작하세요"; // en: Start a conversation
+  const messagePreview =
+    lastMessage && lastMessage.content
+      ? trimContent(lastMessage.content)
+      : "대화를 시작하세요"; // en: Start a conversation
 
   const timeSinceLastMessage = lastMessage
     ? formatSinceDate(lastMessage.createdAt)

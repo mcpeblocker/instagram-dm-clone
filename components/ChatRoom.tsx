@@ -1,6 +1,4 @@
 import { TChat, TUser, TMessage, TIncomingMessage } from "@/utils/types";
-import Avatar from "./Avatar";
-import { getChatTitle } from "@/utils/helpers";
 import { Messages } from "./Messages";
 import { useEffect, useMemo, useState } from "react";
 import api from "@/utils/api";
@@ -13,6 +11,7 @@ interface ChatRoomProps {
   me: TUser;
   onBack: () => void;
   onNewMessage: (message: TMessage) => void;
+  onExit: () => void;
 }
 
 export default function ChatRoom(props: ChatRoomProps) {
@@ -62,7 +61,10 @@ export default function ChatRoom(props: ChatRoomProps) {
           </span>
         </div>
         {/* Logout */}
-        <div className="flex justify-center items-center px-2 cursor-pointer hover:opacity-60 transition-all">
+        <div
+          onClick={props.onExit}
+          className="flex justify-center items-center px-2 cursor-pointer hover:opacity-60 transition-all"
+        >
           <Logout />
         </div>
       </div>

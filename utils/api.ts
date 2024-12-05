@@ -32,7 +32,7 @@ function getLatestMessageId(messages: TMessage[]): number {
     return Math.max(...messages.map((m) => m.id));
 }
 
-async function sendMessage({ content, file, images }: TIncomingMessage, chat: TChat, me: TUser): Promise<TMessage> {
+async function sendMessage({ content, attachments }: TIncomingMessage, chat: TChat, me: TUser): Promise<TMessage> {
     // await wait();
     const newMessage: TMessage = {
         id: getLatestMessageId(data.messages) + 1,
@@ -41,8 +41,7 @@ async function sendMessage({ content, file, images }: TIncomingMessage, chat: TC
         content,
         createdAt: new Date(),
         status: "delivered",
-        file,
-        images,
+        attachments
     };
     data.messages.push(newMessage);
     return newMessage;
@@ -67,6 +66,26 @@ async function searchUsers(query: string, me: TUser): Promise<TSearchResult[]> {
     return data.users.filter((u) => u.id !== me.id && (u.name.toLowerCase().includes(query) || u.department.toLowerCase().includes(query))).map((u) => ({ user: u, connectionLevel: 1 }));
 }
 
+async function newChat(otherUser: TUser, me: TUser): Promise<TChat> {
+    // await wait();
+    // Check if chat already exists
+    const existingChat = data.chats.find((c) => c.otherUser.id === otherUser.id);
+    if (existingChat) {
+        return existingChat;
+    }
+    // Create new chat
+    const chat: TChat = {
+        id: `${me.id}-${otherUser.id}`,
+        otherUser,
+    };
+    data.chats.push(chat);
+    return chat;
+}
+
+async function leaveChat(chat: TChat): Promise<void> {
+    // await wait();
+    data.chats = data.chats.filter((c) => c.id !== chat.id);
+}
 
 // Utility function to simulate time delay
 async function wait(seconds: number = 1) {
@@ -82,6 +101,8 @@ const api = {
     deleteMessage,
     markAsRead,
     searchUsers,
+    newChat,
+    leaveChat
 };
 
 export default api;

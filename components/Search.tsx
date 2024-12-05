@@ -24,7 +24,11 @@ export default function Search(props: SearchProps) {
   };
 
   const handleChoose = (user: TUser) => {
-    setChosenUser(user);
+    if (chosenUser === user) {
+      setChosenUser(null);
+    } else {
+      setChosenUser(user);
+    }
   };
 
   const handleConfirm = () => {

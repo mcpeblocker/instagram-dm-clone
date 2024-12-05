@@ -31,9 +31,6 @@ export const formatDate = (date: Date) => {
 export const formatSinceDate = (date: Date) => {
     const now = new Date();
     const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
-    if (seconds < 60) {
-        return "Just now";
-    }
     if (seconds < 3600) {
         return `${Math.floor(seconds / 60)}m`;
     }
@@ -59,7 +56,7 @@ export const formatFileSize = (size: number) => {
 
 export const loadChatThumbnails = async (me: TUser, chats: TChat[]): Promise<TChatThumbnail[]> => {
     const promises = chats.map((chat) =>
-        api.getLastMessage(chat).then((m) => ({ ...chat, me, lastMessage: m }))
+        api.getLastMessage(chat).then((m) => ({ chat, me, lastMessage: m }))
     );
     const thumbnails = await Promise.all(promises);
     thumbnails.sort((a, b) => {
@@ -71,4 +68,8 @@ export const loadChatThumbnails = async (me: TUser, chats: TChat[]): Promise<TCh
         );
     })
     return thumbnails;
+}
+
+export const isFileImage = (file: File) => {
+    return file.type.startsWith("image/");
 }

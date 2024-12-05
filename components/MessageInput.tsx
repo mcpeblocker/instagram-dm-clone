@@ -1,9 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Photo from "./icons/Photo";
 import File from "./icons/File";
-import { TIncomingMessage } from "@/utils/types";
+import { TAttachment, TIncomingMessage } from "@/utils/types";
 import FilePreview from "./FilePreview";
 import ImagePreview from "./ImagePreview";
+import Plus from "./icons/Plus";
+import Send from "./icons/Send";
+import { isFileImage } from "@/utils/helpers";
 
 interface MessageInputProps {
   onSubmit: (incomingMessage: TIncomingMessage) => void;
@@ -11,127 +14,103 @@ interface MessageInputProps {
 
 export default function MessageInput(props: MessageInputProps) {
   const [text, setText] = useState("");
-  const [attachedFile, setAttachedFile] = useState<File | null>(null);
-  const [attachedImages, setAttachedImages] = useState<File[] | null>(null);
+  const [attachedFiles, setAttachedFiles] = useState<TAttachment[]>([]);
+
   const handleText = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
 
   const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setAttachedFile(file);
-  };
-
-  const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length == 0) return;
     if (files.length > 5) {
       alert("You can only send up to 5 images at once.");
-      return;
     }
-    const updatedImages = [
-      ...Array.from(files),
-      ...(attachedImages ?? []),
+    const updatedFiles = [
+      ...Array.from(files).map((file) => ({
+        file,
+        isImage: isFileImage(file),
+      })),
+      ...attachedFiles,
     ].slice(0, 5);
-    setAttachedImages(updatedImages);
+    setAttachedFiles(updatedFiles);
   };
 
-  const handleFileDelete = () => {
-    setAttachedFile(null);
-  };
-
-  const handleImageDelete = (index: number) => {
-    if (!attachedImages) return;
-    const newImages = attachedImages.filter((_, i) => i !== index);
-    if (newImages.length === 0) {
-      setAttachedImages(null);
-    } else {
-      setAttachedImages(newImages);
-    }
+  const handleFileDelete = (file: TAttachment) => {
+    setAttachedFiles(attachedFiles.filter((f) => f !== file));
   };
 
   const handleSend = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!text) return;
+    if (!(text || attachedFiles.length > 0)) return;
     props.onSubmit({
       content: text,
-      file: attachedFile,
-      images: attachedImages,
+      attachments: attachedFiles,
     });
     setText("");
-    setAttachedFile(null);
-    setAttachedImages(null);
+    setAttachedFiles([]);
   };
 
   return (
-    <form className="py-2 px-4" onSubmit={handleSend}>
+    <form className="p-2" onSubmit={handleSend}>
+      {/* Attachments (optionally displayed) */}
       <div className="w-full">
         {/* Attachments */}
-        {(attachedFile || attachedImages) && (
-          <span className="text-sm">Attachments:</span>
+        {attachedFiles.length > 0 && (
+          <span className="text-sm text-secondary px-4">Attachments:</span>
         )}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2">
-          {attachedFile && (
-            <FilePreview file={attachedFile} onDelete={handleFileDelete} />
-          )}
-          {attachedImages &&
-            attachedImages.map((image, i) => (
+        <div className="flex justify-around flex-wrap gap-2">
+          {attachedFiles.map((attachment, i) =>
+            attachment.isImage ? (
               <ImagePreview
                 key={i}
-                image={image}
-                onDelete={handleImageDelete.bind(null, i)}
+                image={attachment.file}
+                onDelete={handleFileDelete.bind(null, attachment)}
               />
-            ))}
+            ) : (
+              <FilePreview
+                key={i}
+                file={attachment.file}
+                onDelete={handleFileDelete.bind(null, attachment)}
+              />
+            )
+          )}
         </div>
       </div>
-      <div
-        className="w-full flex gap-1 py-2 px-4 rounded-3xl bg-default border-2 border-bg-secondary"
-        style={{ borderWidth: 1 }}
-      >
-        <div className="flex justify-center items-center gap-1 mr-2">
-          <div className="cursor-pointer hover:opacity-60" title="Add File">
-            <label className="cursor-pointer" htmlFor="upload-file">
-              <File />
-            </label>
-            <input
-              type="file"
-              id="upload-file"
-              accept=".doc,.docx,.pdf,.txt"
-              className="hidden"
-              onChange={handleFile}
-            />
-          </div>
-          <div className="hover:opacity-60" title="Add Photo">
-            <label className="cursor-pointer" htmlFor="upload-image">
-              <Photo />
-            </label>
-            <input
-              type="file"
-              id="upload-image"
-              className="hidden"
-              accept="image/*"
-              multiple
-              onChange={handleImage}
-            />
-          </div>
+      {/* Input (always displayed) */}
+      <div className="w-full flex items-center gap-2 p-2">
+        <div
+          className="bg-secondary-bg p-2 rounded-full cursor-pointer hover:opacity-60"
+          title="Add File"
+        >
+          <label className="cursor-pointer" htmlFor="upload-file">
+            <Plus />
+          </label>
+          <input
+            type="file"
+            id="upload-file"
+            accept=".doc,.docx,.pdf,.txt,image/*"
+            multiple
+            className="hidden"
+            onChange={handleFile}
+          />
         </div>
         <input
-          className="flex-1 bg-transparent outline-none border-none"
+          className="flex-grow outline-none border-none rounded-md bg-secondary-bg p-2 text-sm"
           value={text}
           type="text"
           name="text"
-          placeholder="Message..."
+          // en: Send message
+          placeholder="메세지 보내기"
           onChange={handleText}
         />
-        {text !== "" && (
-          <button
-            className="text-primary font-semibold text-sm hover:opacity-60"
-            type="submit"
-          >
-            Send
-          </button>
-        )}
+        <button
+          className="flex items-center justify-center p-2 pr-2.5 pt-2.5 rounded-full bg-primary hover:opacity-75 disabled:opacity-50 disabled:cursor-not-allowed"
+          type="submit"
+          disabled={!(text || attachedFiles.length > 0)}
+        >
+          <Send />
+        </button>
       </div>
     </form>
   );

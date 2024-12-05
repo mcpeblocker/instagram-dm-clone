@@ -14,6 +14,7 @@ import ChatsListLoader from "./loaders/ChatsList.loader";
 import { loadChatThumbnails } from "@/utils/helpers";
 import Inbox from "./Inbox";
 import Search from "./Search";
+import ExitConfirmation from "./ExitConfirmation";
 
 export default function Direct() {
   // States
@@ -25,6 +26,7 @@ export default function Direct() {
   );
   const [selectedChat, setSelectedChat] = React.useState<TChat | null>(null);
   const [isSearching, setIsSearching] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   // Hooks
   const router = useRouter();
@@ -39,11 +41,7 @@ export default function Direct() {
 
   useEffect(() => {
     if (!me) return;
-    // Load chats from API
-    api.getChats(me).then((data) => {
-      setChats(data);
-      setIsLoading(false);
-    });
+    loadChats(me);
   }, [me]);
 
   useEffect(() => {
@@ -65,8 +63,18 @@ export default function Direct() {
     }
   }, [router, searchParams, chats, isInbox]);
 
+  const loadChats = async (me: TUser) => {
+    setIsLoading(true);
+    try {
+      const data = await api.getChats(me);
+      setChats(data);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleChatSelection = async (chatThumbnail: TChatThumbnail) => {
-    const chat = chats.find((chat) => chat.id === chatThumbnail.id);
+    const chat = chats.find((chat) => chat.id === chatThumbnail.chat.id);
     if (!chat) return;
     setSelectedChat(chat);
     try {
@@ -96,14 +104,31 @@ export default function Direct() {
     if (!chatThumbnails.length) return;
     if (!me) return;
     // Reload chat thumbnails to show the new message
-    loadChatThumbnails(me, chats);
+    loadChatThumbnails(me, chats).then(setChatThumbnails);
   };
 
   const showSearch = () => {
     setIsSearching(true);
   };
 
-  const handleNewChat = (user: TUser) => {};
+  const handleNewChat = (user: TUser) => {
+    if (!me) return;
+    api.newChat(user, me).then((chat) => {
+      loadChats(me).then(() => {
+        handleChatSelection({ chat, me });
+      });
+    });
+  };
+
+  const handleChatExit = () => {
+    if (!me) return;
+    setIsModalOpen(false);
+    if (!selectedChat) return;
+    handleBackFromChat();
+    api.leaveChat(selectedChat).then(() => {
+      loadChats(me);
+    });
+  };
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -131,20 +156,23 @@ export default function Direct() {
         )}
       </div>
       {/* Chatroom */}
-      <div
-        className={
-          "flex-grow " + (isInbox ? " hidden md:block" : "")
-        }
-      >
+      <div className={"flex-grow " + (isInbox ? " hidden md:block" : "")}>
         {selectedChat !== null && me ? (
           <ChatRoom
             chat={selectedChat}
             me={me}
             onBack={handleBackFromChat}
             onNewMessage={handleNewMessage}
+            onExit={() => setIsModalOpen(true)}
           />
         ) : (
           <NoChatRoom />
+        )}
+        {isModalOpen && (
+          <ExitConfirmation
+            onCancel={() => setIsModalOpen(false)}
+            onConfirm={handleChatExit}
+          />
         )}
       </div>
     </div>

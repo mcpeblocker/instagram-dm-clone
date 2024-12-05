@@ -20,26 +20,29 @@ export type TChat = {
     otherUser: TUser;
 }
 
-export type TChatThumbnail = TChat & {
+export type TChatThumbnail = {
+    chat: TChat;
     me: TUser;
     lastMessage?: TMessage;
 };
 
 export type TMessageStatus = "delivered" | "read";
 
+export type TAttachment = {
+    file: File;
+    isImage: boolean;
+}
+
 export type TMessage = {
     id: number;
     authorId: number;
     chatId: string;
-    content: string;
+    content: string | null;
     createdAt: Date;
     status: TMessageStatus;
-    file: File | null;
-    images: File[] | null;
+    attachments: TAttachment[];
 }
 
-export type TIncomingMessage = Pick<TMessage, "content" | "file" | "images">;
+export type TIncomingMessage = Pick<TMessage, "content" | "attachments">;
 
-export type TSenderSwitch = "SENDER_SWITCH";
-
-export type TChatEntity = TMessage | Date | TSenderSwitch;
+export type TChatEntity = { message: TMessage, lastOfAuthor: boolean } | Date;

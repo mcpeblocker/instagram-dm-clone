@@ -139,13 +139,13 @@ function MessageBox(props: MessageBoxProps) {
           )}
           {/* Message text */}
           {hasContent && (
-            <p
-              className={`max-w-2xl text-wrap break-words py-1.5 px-3 rounded-md ${
+            <pre
+              className={`max-w-2xl text-wrap break-words py-1.5 px-3 rounded-md font-sans ${
                 isMine ? "bg-primary-bg" : "bg-secondary-bg"
               } text-contrast`}
             >
               {message.content}
-            </p>
+            </pre>
           )}
           {/* Actions: Copy / Delete */}
           <div className="hidden group-hover/content:flex absolute z-50 -bottom-4 bg-secondary-bg p-1.5 gap-1 rounded-xl">

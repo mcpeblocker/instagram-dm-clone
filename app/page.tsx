@@ -8,7 +8,7 @@ export default function Home() {
       <p className="text-md text-secondary">{description}</p>
       <Link
         href="/direct"
-        className="bg-contrast text-primary rounded-md p-3 text-xl font-bold hover:bg-secondary transition-all"
+        className="bg-contrast text-default rounded-md p-3 text-xl font-bold hover:bg-secondary transition-all"
       >
         Go to Inbox
       </Link>

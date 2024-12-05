@@ -1,57 +1,97 @@
 // This file contains hardcoded data that is used in the application.
 
-import { Chat, Message, User } from "./types";
+import { TChat, TMessage, TUser } from "./types";
 
 const AVATAR_URL = "https://i.pravatar.cc/300";
 
-const steve: User = {
+const steve: TUser = {
     id: 1,
     avatar: `${AVATAR_URL}?img=53`,
     name: "Steve",
+    department: "School of Computing",
+    school: "KAIST",
+    admissionYear: 2024,
+    program: "Undergraduate",
+    interests: ["Programming", "Web Development", "Machine Learning"]
 }
-const john: User = {
+const john: TUser = {
     id: 2,
     avatar: `${AVATAR_URL}?img=8`,
     name: "John",
+    department: "Department of Physics",
+    school: "KAIST",
+    admissionYear: 2024,
+    program: "Undergraduate",
+    interests: ["Physics", "Mathematics", "Astronomy"]
 }
-const jane: User = {
+const jane: TUser = {
     id: 3,
     avatar: `${AVATAR_URL}?img=44`,
     name: "Jane",
+    department: "Department of Chemistry",
+    school: "KAIST",
+    admissionYear: 2024,
+    program: "Undergraduate",
+    interests: ["Chemistry", "Biology", "Medicine"]
 }
-const mary: User = {
+const mary: TUser = {
     id: 4,
     avatar: `${AVATAR_URL}?img=41`,
     name: "Mary",
+    department: "Department of Biology",
+    school: "KAIST",
+    admissionYear: 2024,
+    program: "Undergraduate",
+    interests: ["Biology", "Genetics", "Ecology"]
 }
-const kate: User = {
+const kate: TUser = {
     id: 5,
     avatar: `${AVATAR_URL}?img=47`,
     name: "Kate",
+    department: "Department of Mathematics",
+    school: "KAIST",
+    admissionYear: 2024,
+    program: "Undergraduate",
+    interests: ["Mathematics", "Statistics", "Data Analysis"]
 }
-const tom: User = {
+const tom: TUser = {
     id: 6,
     avatar: `${AVATAR_URL}?img=58`,
     name: "Tom",
+    department: "Department of Economics",
+    school: "KAIST",
+    admissionYear: 2024,
+    program: "Undergraduate",
+    interests: ["Economics", "Finance", "Business"]
 }
-const jerry: User = {
+const jerry: TUser = {
     id: 7,
     avatar: `${AVATAR_URL}?img=59`,
     name: "Jerry",
+    department: "Department of History",
+    school: "KAIST",
+    admissionYear: 2024,
+    program: "Undergraduate",
+    interests: ["History", "Politics", "Culture"]
 }
-const alice: User = {
+const alice: TUser = {
     id: 8,
     avatar: `${AVATAR_URL}?img=45`,
     name: "Alice",
+    department: "Department of Geography",
+    school: "KAIST",
+    admissionYear: 2024,
+    program: "Undergraduate",
+    interests: ["Geography", "Geology", "Environment"]
 }
 
 const me = steve;
 
-const chat1: Chat = {
+const chat1: TChat = {
     id: "roguohrymmd3",
-    members: [john, steve]
+    otherUser: john
 };
-const chat1Messages: Message[] = [
+const chat1Messages: TMessage[] = [
     {
         id: 1,
         authorId: john.id,
@@ -124,108 +164,109 @@ const chat1Messages: Message[] = [
     }
 ]
 
-const chat2: Chat = {
-    id: "6ows52ixe96e",
-    members: [john, alice, tom, steve]
-};
-const chat2Messages: Message[] = [
-    {
-        id: 8,
-        authorId: john.id,
-        chatId: chat2.id,
-        content: "Hello, everyone!",
-        createdAt: new Date("2024-12-03T12:05:00"),
-        status: "read",
-        file: null,
-        images: null,
-    },
-    {
-        id: 9,
-        authorId: alice.id,
-        chatId: chat2.id,
-        content: "Hi, John!",
-        createdAt: new Date("2024-12-03T12:05:30"),
-        status: "read",
-        file: null,
-        images: null,
-    },
-    {
-        id: 10,
-        authorId: tom.id,
-        chatId: chat2.id,
-        content: "Hello!",
-        createdAt: new Date("2024-12-03T12:06:00"),
-        status: "read",
-        file: null,
-        images: null,
-    },
-    {
-        id: 11,
-        authorId: steve.id,
-        chatId: chat2.id,
-        content: "Hi, everyone!",
-        createdAt: new Date("2024-12-03T12:06:30"),
-        status: "read",
-        file: null,
-        images: null,
-    },
-    {
-        id: 12,
-        authorId: john.id,
-        chatId: chat2.id,
-        content: "How are you?",
-        createdAt: new Date("2024-12-03T12:07:00"),
-        status: "read",
-        file: null,
-        images: null,
-    },
-    {
-        id: 13,
-        authorId: alice.id,
-        chatId: chat2.id,
-        content: "I'm good, thanks!",
-        createdAt: new Date("2024-12-03T12:07:30"),
-        status: "read",
-        file: null,
-        images: null,
-    },
-    {
-        id: 14,
-        authorId: tom.id,
-        chatId: chat2.id,
-        content: "I'm good too!",
-        createdAt: new Date("2024-12-03T12:08:00"),
-        status: "read",
-        file: null,
-        images: null,
-    },
-    {
-        id: 15,
-        authorId: steve.id,
-        chatId: chat2.id,
-        content: "Doing amazing!",
-        createdAt: new Date("2024-12-03T12:08:30"),
-        status: "read",
-        file: null,
-        images: null,
-    },
-    {
-        id: 16,
-        authorId: john.id,
-        chatId: chat2.id,
-        content: "Great!",
-        createdAt: new Date("2024-12-03T12:09:00"),
-        status: "delivered",
-        file: null,
-        images: null,
-    }
-]
+// The code below is commented due to an assumption that there exist no group chats in the application.
+// const chat2: TChat = {
+//     id: "6ows52ixe96e",
+//     members: [john, alice, tom, steve]
+// };
+// const chat2Messages: TMessage[] = [
+//     {
+//         id: 8,
+//         authorId: john.id,
+//         chatId: chat2.id,
+//         content: "Hello, everyone!",
+//         createdAt: new Date("2024-12-03T12:05:00"),
+//         status: "read",
+//         file: null,
+//         images: null,
+//     },
+//     {
+//         id: 9,
+//         authorId: alice.id,
+//         chatId: chat2.id,
+//         content: "Hi, John!",
+//         createdAt: new Date("2024-12-03T12:05:30"),
+//         status: "read",
+//         file: null,
+//         images: null,
+//     },
+//     {
+//         id: 10,
+//         authorId: tom.id,
+//         chatId: chat2.id,
+//         content: "Hello!",
+//         createdAt: new Date("2024-12-03T12:06:00"),
+//         status: "read",
+//         file: null,
+//         images: null,
+//     },
+//     {
+//         id: 11,
+//         authorId: steve.id,
+//         chatId: chat2.id,
+//         content: "Hi, everyone!",
+//         createdAt: new Date("2024-12-03T12:06:30"),
+//         status: "read",
+//         file: null,
+//         images: null,
+//     },
+//     {
+//         id: 12,
+//         authorId: john.id,
+//         chatId: chat2.id,
+//         content: "How are you?",
+//         createdAt: new Date("2024-12-03T12:07:00"),
+//         status: "read",
+//         file: null,
+//         images: null,
+//     },
+//     {
+//         id: 13,
+//         authorId: alice.id,
+//         chatId: chat2.id,
+//         content: "I'm good, thanks!",
+//         createdAt: new Date("2024-12-03T12:07:30"),
+//         status: "read",
+//         file: null,
+//         images: null,
+//     },
+//     {
+//         id: 14,
+//         authorId: tom.id,
+//         chatId: chat2.id,
+//         content: "I'm good too!",
+//         createdAt: new Date("2024-12-03T12:08:00"),
+//         status: "read",
+//         file: null,
+//         images: null,
+//     },
+//     {
+//         id: 15,
+//         authorId: steve.id,
+//         chatId: chat2.id,
+//         content: "Doing amazing!",
+//         createdAt: new Date("2024-12-03T12:08:30"),
+//         status: "read",
+//         file: null,
+//         images: null,
+//     },
+//     {
+//         id: 16,
+//         authorId: john.id,
+//         chatId: chat2.id,
+//         content: "Great!",
+//         createdAt: new Date("2024-12-03T12:09:00"),
+//         status: "delivered",
+//         file: null,
+//         images: null,
+//     }
+// ]
 
-const chat3: Chat = {
+const chat3: TChat = {
     id: "m2bk8kadvmlg",
-    members: [jane, steve]
+    otherUser: jane
 };
-const chat3Messages: Message[] = [
+const chat3Messages: TMessage[] = [
     {
         id: 17,
         authorId: jane.id,
@@ -278,11 +319,11 @@ const chat3Messages: Message[] = [
     }
 ]
 
-const chat4: Chat = {
+const chat4: TChat = {
     id: "tr7m374cfp45",
-    members: [mary, steve]
+    otherUser: mary
 };
-const chat4Messages: Message[] = [
+const chat4Messages: TMessage[] = [
     {
         id: 22,
         authorId: mary.id,
@@ -335,11 +376,11 @@ const chat4Messages: Message[] = [
     }
 ]
 
-const chat5: Chat = {
+const chat5: TChat = {
     id: "bifzan1ea3pv",
-    members: [kate, steve]
+    otherUser: kate
 };
-const chat5Messages: Message[] = [
+const chat5Messages: TMessage[] = [
     {
         id: 27,
         authorId: kate.id,
@@ -392,11 +433,11 @@ const chat5Messages: Message[] = [
     }
 ]
 
-const chat6: Chat = {
+const chat6: TChat = {
     id: "vuynin8hhsvw",
-    members: [tom, steve]
+    otherUser: tom
 };
-const chat6Messages: Message[] = [
+const chat6Messages: TMessage[] = [
     {
         id: 32,
         authorId: tom.id,
@@ -449,11 +490,11 @@ const chat6Messages: Message[] = [
     }
 ]
 
-const chat7: Chat = {
+const chat7: TChat = {
     id: "r8id2qr6pt29",
-    members: [jerry, steve]
+    otherUser: jerry
 };
-const chat7Messages: Message[] = [
+const chat7Messages: TMessage[] = [
     {
         id: 37,
         authorId: jerry.id,
@@ -496,11 +537,11 @@ const chat7Messages: Message[] = [
     }
 ]
 
-const chat8: Chat = {
+const chat8: TChat = {
     id: "oxofydcwjvlo",
-    members: [alice, steve]
+    otherUser: alice
 };
-const chat8Messages: Message[] = [
+const chat8Messages: TMessage[] = [
     {
         id: 41,
         authorId: alice.id,
@@ -563,10 +604,10 @@ const chat8Messages: Message[] = [
     }
 ]
 
-const chats: Chat[] = [chat1, chat2, chat3, chat4, chat5, chat6, chat7, chat8];
-const messages: Message[] = [
+const users: TUser[] = [john, jane, mary, kate, tom, jerry, alice];
+const chats: TChat[] = [chat1, chat3, chat4, chat5, chat6, chat7, chat8];
+const messages: TMessage[] = [
     ...chat1Messages,
-    ...chat2Messages,
     ...chat3Messages,
     ...chat4Messages,
     ...chat5Messages,
@@ -576,6 +617,7 @@ const messages: Message[] = [
 ];
 
 const data = {
+    users,
     chats,
     me,
     messages,

@@ -14,7 +14,7 @@ export default function FileAttachment(props: FileAttachmentProps) {
   return (
     <div
       onClick={handleClick}
-      className="flex items-center gap-1 w-36 p-1 rounded-lg cursor-pointer hover:text-highlight transition-all border-plain"
+      className="flex items-center gap-1 w-36 p-1 rounded-lg cursor-pointer hover:text-primary transition-all border-bg-secondary"
       style={{ borderWidth: "1px" }}
     >
       <div>

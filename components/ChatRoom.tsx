@@ -1,4 +1,4 @@
-import { Chat, User, Message, IncomingMessage } from "@/utils/types";
+import { TChat, TUser, TMessage, TIncomingMessage } from "@/utils/types";
 import Avatar from "./Avatar";
 import { getChatTitle } from "@/utils/helpers";
 import { Messages } from "./Messages";
@@ -6,16 +6,17 @@ import { useEffect, useMemo, useState } from "react";
 import api from "@/utils/api";
 import MessageInput from "./MessageInput";
 import LeftArrow from "./icons/LeftArrow";
+import Logout from "./icons/Logout";
 
 interface ChatRoomProps {
-  chat: Chat;
-  me: User;
+  chat: TChat;
+  me: TUser;
   onBack: () => void;
-  onNewMessage: (message: Message) => void;
+  onNewMessage: (message: TMessage) => void;
 }
 
 export default function ChatRoom(props: ChatRoomProps) {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<TMessage[]>([]);
   const sortedMessages = useMemo(
     () =>
       messages.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime()),
@@ -27,7 +28,7 @@ export default function ChatRoom(props: ChatRoomProps) {
     api.getMessages(props.chat).then(setMessages);
   }, [props.chat]);
 
-  const handleMessageSend = (incomingMessage: IncomingMessage) => {
+  const handleMessageSend = (incomingMessage: TIncomingMessage) => {
     api
       .sendMessage(incomingMessage, props.chat, props.me)
       .then((newMessage) => {
@@ -36,7 +37,7 @@ export default function ChatRoom(props: ChatRoomProps) {
       });
   };
 
-  const handleMessageDelete = (message: Message) => {
+  const handleMessageDelete = (message: TMessage) => {
     api.deleteMessage(message).then(() => {
       setMessages(messages.filter((m) => m.id !== message.id));
     });
@@ -45,17 +46,25 @@ export default function ChatRoom(props: ChatRoomProps) {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div
-        className="flex gap-4 py-2 px-4 items-center border-b-plain"
-        style={{ borderBottomWidth: 1 }}
-      >
-        <div onClick={props.onBack} className="cursor-pointer">
+      <div className="w-full flex p-2 pt-4 gap-4 items-center text-contrast">
+        {/* Back button */}
+        <div
+          onClick={props.onBack}
+          className="cursor-pointer hover:opacity-60 transition-all"
+        >
           <LeftArrow />
         </div>
-        <Avatar chat={props.chat} me={props.me} />
-        <span className="font-semibold">
-          {getChatTitle(props.chat.members, props.me)}
-        </span>
+        {/* Other persons' details */}
+        <div className="flex-grow flex flex-col">
+          <span className="font-semibold">{props.chat.otherUser.name}</span>
+          <span className="text-sm text-secondary">
+            {props.chat.otherUser.school}・{props.chat.otherUser.department}
+          </span>
+        </div>
+        {/* Logout */}
+        <div className="flex justify-center items-center px-2 cursor-pointer hover:opacity-60 transition-all">
+          <Logout />
+        </div>
       </div>
       {/* Messages */}
       <div className="flex-grow overflow-y-auto">

@@ -1,4 +1,5 @@
-import { User } from "./types";
+import api from "./api";
+import { TChat, TChatThumbnail, TUser } from "./types";
 
 const MAX_LENGTH = 25;
 
@@ -8,9 +9,9 @@ export const trimContent = (message: string, maxLength = MAX_LENGTH) => {
         : message;
 };
 
-export const getOtherMembers = (members: User[], me: User) => members.filter((member) => member.id !== me.id);
+export const getOtherMembers = (members: TUser[], me: TUser) => members.filter((member) => member.id !== me.id);
 
-export const getChatTitle = (members: User[], me: User) => {
+export const getChatTitle = (members: TUser[], me: TUser) => {
     const otherMembers = getOtherMembers(members, me);
     return members.length > 2
         ? trimContent(otherMembers.map((member) => member.name).join(" & "))
@@ -54,4 +55,20 @@ export const formatFileSize = (size: number) => {
         return `${(size / 1024).toFixed(1)} KB`;
     }
     return `${(size / 1024 / 1024).toFixed(1)} MB`;
+}
+
+export const loadChatThumbnails = async (me: TUser, chats: TChat[]): Promise<TChatThumbnail[]> => {
+    const promises = chats.map((chat) =>
+        api.getLastMessage(chat).then((m) => ({ ...chat, me, lastMessage: m }))
+    );
+    const thumbnails = await Promise.all(promises);
+    thumbnails.sort((a, b) => {
+        if (!a.lastMessage) return 1;
+        if (!b.lastMessage) return -1;
+        return (
+            b.lastMessage.createdAt.getTime() -
+            a.lastMessage.createdAt.getTime()
+        );
+    })
+    return thumbnails;
 }

@@ -1,40 +1,40 @@
 import data from "./data";
-import { Chat, User, Message, IncomingMessage } from "./types";
+import { TChat, TUser, TMessage, TIncomingMessage, TSearchResult } from "./types";
 
 // All api calls return hard-coded data
 // Assuming all calls result in success
 // No actual fetch error handling is implemented
 
-async function getMe(): Promise<User> {
-    // await wait();
+async function getMe(): Promise<TUser> {
+    // await wait(5);
     return data.me;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function getChats(_me: User): Promise<Chat[]> {
-    // await wait();
+async function getChats(_me: TUser): Promise<TChat[]> {
+    // await wait(5);
     return data.chats;
 }
 
-async function getLastMessage(chat: Chat): Promise<Message | undefined> {
+async function getLastMessage(chat: TChat): Promise<TMessage | undefined> {
     // await wait();
     return data.messages
         .filter((m) => m.chatId === chat.id)
         .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())[0];
 }
 
-async function getMessages(chat: Chat): Promise<Message[]> {
+async function getMessages(chat: TChat): Promise<TMessage[]> {
     // await wait();
     return data.messages.filter((m) => m.chatId === chat.id);
 }
 
-function getLatestMessageId(messages: Message[]): number {
+function getLatestMessageId(messages: TMessage[]): number {
     return Math.max(...messages.map((m) => m.id));
 }
 
-async function sendMessage({ content, file, images }: IncomingMessage, chat: Chat, me: User): Promise<Message> {
+async function sendMessage({ content, file, images }: TIncomingMessage, chat: TChat, me: TUser): Promise<TMessage> {
     // await wait();
-    const newMessage: Message = {
+    const newMessage: TMessage = {
         id: getLatestMessageId(data.messages) + 1,
         authorId: me.id,
         chatId: chat.id,
@@ -48,18 +48,25 @@ async function sendMessage({ content, file, images }: IncomingMessage, chat: Cha
     return newMessage;
 }
 
-async function deleteMessage(message: Message): Promise<void> {
+async function deleteMessage(message: TMessage): Promise<void> {
     // await wait();
     data.messages = data.messages.filter((m) => m.id !== message.id);
 }
 
-async function markAsRead(message: Message): Promise<void> {
+async function markAsRead(message: TMessage): Promise<void> {
     // await wait();
     const index = data.messages.findIndex((m) => m.id === message.id);
     if (index !== -1) {
         data.messages[index].status = "read";
     }
 }
+
+async function searchUsers(query: string, me: TUser): Promise<TSearchResult[]> {
+    // await wait();
+    query = query.trim().toLowerCase();
+    return data.users.filter((u) => u.id !== me.id && (u.name.toLowerCase().includes(query) || u.department.toLowerCase().includes(query))).map((u) => ({ user: u, connectionLevel: 1 }));
+}
+
 
 // Utility function to simulate time delay
 async function wait(seconds: number = 1) {
@@ -74,6 +81,7 @@ const api = {
     sendMessage,
     deleteMessage,
     markAsRead,
+    searchUsers,
 };
 
 export default api;

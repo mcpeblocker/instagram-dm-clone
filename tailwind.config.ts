@@ -9,12 +9,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "var(--primary)",
+        default: "var(--default)",
         contrast: "var(--contrast)",
+        primary: "var(--primary)",
+        "primary-bg": "var(--primary-bg)",
         secondary: "var(--secondary)",
-        plain: "var(--plain)",
-        highlight: "var(--highlight)",
-      },
+        "secondary-bg": "var(--secondary-bg)",
+      }
     },
   },
   plugins: [],

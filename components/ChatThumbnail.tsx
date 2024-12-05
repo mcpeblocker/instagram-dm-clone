@@ -1,48 +1,63 @@
-import { ThumbnailChat } from "@/utils/types";
+import { TChatThumbnail } from "@/utils/types";
 import Avatar from "./Avatar";
-import { formatSinceDate, getChatTitle, trimContent } from "@/utils/helpers";
+import { formatSinceDate, trimContent } from "@/utils/helpers";
+import UnreadIndicator from "./icons/UnreadIndicator";
 
 interface ChatThumbnailProps {
-  chat: ThumbnailChat;
+  thumbnail: TChatThumbnail;
   onClick: () => void;
 }
 
 export default function ChatThumbnail(props: ChatThumbnailProps) {
-  const { lastMessage, me, members } = props.chat;
+  const { lastMessage, me, otherUser } = props.thumbnail;
   const isUnread =
     lastMessage &&
     lastMessage.authorId !== me.id &&
     lastMessage.status !== "read";
-  const chatTitle = getChatTitle(members, me);
+  const chatTitle = trimContent(otherUser.name);
+  const chatSubtitle = trimContent(otherUser.department);
 
   const messagePreview = lastMessage
     ? trimContent(lastMessage.content)
-    : "Start a conversation";
+    : "대화를 시작하세요"; // en: Start a conversation
 
-  const sinceDate = lastMessage ? formatSinceDate(lastMessage.createdAt) : "";
+  const timeSinceLastMessage = lastMessage
+    ? formatSinceDate(lastMessage.createdAt)
+    : "";
 
   return (
     <div
-      className="flex items-center gap-4 p-2 bg-primary rounded-md cursor-pointer"
+      className="w-full flex items-center gap-3 p-2 rounded-md cursor-pointer"
       onClick={props.onClick}
     >
-      <Avatar chat={props.chat} me={props.chat.me} />
-      <div className="flex-1 text-contrast flex flex-col gap-1">
-        <p className={`text-md ${isUnread ? "font-semibold" : ""}`}>
-          {chatTitle}
-        </p>
-        <p className={`text-xs ${isUnread ? "font-semibold" : ""}`}>
-          {messagePreview}
-          {lastMessage && (
-            <span className="text-secondary text-xs"> • {sinceDate}</span>
-          )}
-        </p>
+      {/* User avatar */}
+      <Avatar user={otherUser} />
+      {/* Chat details */}
+      <div
+        className={
+          "flex-grow flex flex-col justify-between gap-1" +
+          (isUnread ? " font-semibold" : "")
+        }
+      >
+        {/* First Row */}
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-1">
+            {/* Name */}
+            <p className="text-md font-semibold">{chatTitle}</p>
+            {/* Department */}
+            <p className="text-xs font-normal text-secondary">{chatSubtitle}</p>
+          </div>
+          {/* Time since last message date */}
+          <span className="text-secondary text-xs">{timeSinceLastMessage}</span>
+        </div>
+        {/* Second Row */}
+        <div className="flex justify-between items-center">
+          {/* Latest message text */}
+          <p className="text-sm">{messagePreview}</p>
+          {/* Unread indicator */}
+          {isUnread && <UnreadIndicator />}
+        </div>
       </div>
-      <span
-        className={`w-2 h-2 bg-highlight rounded-full ${
-          isUnread ? "" : "hidden"
-        }`}
-      ></span>
     </div>
   );
 }

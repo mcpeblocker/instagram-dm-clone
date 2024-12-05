@@ -1,4 +1,4 @@
-import Inbox from "@/components/Inbox";
+import Inbox from "@/components/Direct";
 import { Metadata } from "next";
 
 type GenerateMetadataProps = {

@@ -1,12 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Photo from "./icons/Photo";
 import File from "./icons/File";
-import { IncomingMessage } from "@/utils/types";
+import { TIncomingMessage } from "@/utils/types";
 import FilePreview from "./FilePreview";
 import ImagePreview from "./ImagePreview";
 
 interface MessageInputProps {
-  onSubmit: (incomingMessage: IncomingMessage) => void;
+  onSubmit: (incomingMessage: TIncomingMessage) => void;
 }
 
 export default function MessageInput(props: MessageInputProps) {
@@ -86,7 +86,7 @@ export default function MessageInput(props: MessageInputProps) {
         </div>
       </div>
       <div
-        className="w-full flex gap-1 py-2 px-4 rounded-3xl bg-primary border-2 border-plain"
+        className="w-full flex gap-1 py-2 px-4 rounded-3xl bg-default border-2 border-bg-secondary"
         style={{ borderWidth: 1 }}
       >
         <div className="flex justify-center items-center gap-1 mr-2">
@@ -126,7 +126,7 @@ export default function MessageInput(props: MessageInputProps) {
         />
         {text !== "" && (
           <button
-            className="text-highlight font-semibold text-sm hover:opacity-60"
+            className="text-primary font-semibold text-sm hover:opacity-60"
             type="submit"
           >
             Send

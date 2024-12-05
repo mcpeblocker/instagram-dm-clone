@@ -1,2 +1,5 @@
-export const title = "Instagram DM Clone";
-export const description = "Frontend UI mimicking Instagram's DM feature coded during a trial period in TeamBL team.";
+import { TSenderSwitch } from "./types";
+
+export const title = "TeamBL Messaging";
+export const description = "TeamBL Messaging UI.";
+export const SENDER_SWITCH: TSenderSwitch = "SENDER_SWITCH";

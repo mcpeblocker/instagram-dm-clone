@@ -1,9 +1,9 @@
-import { TChatThumbnail } from "@/utils/types";
 import { useRouter } from "next/navigation";
-import LeftArrow from "./icons/LeftArrow";
-import TextButton from "./TextButton";
-import ChatsListLoader from "./loaders/ChatsList.loader";
-import ChatsList from "./ChatsList";
+import { TChatThumbnail } from "@/utils/types";
+import LeftArrow from "@/components/icons/LeftArrow";
+import TextButton from "@/components/common/TextButton";
+import ChatsListLoader from "@/components/loaders/ChatsList.loader";
+import ChatsList from "@/components/inbox/ChatsList";
 
 interface InboxProps {
   onNewChat: () => void;

@@ -1,11 +1,10 @@
-import { useRouter } from "next/navigation";
-import LeftArrow from "./icons/LeftArrow";
-import TextButton from "./TextButton";
-import SearchInput from "./SearchInput";
-import { TSearchResult, TUser } from "@/utils/types";
 import { useState } from "react";
-import UserInfo from "./UserInfo";
+import { TSearchResult, TUser } from "@/utils/types";
 import api from "@/utils/api";
+import LeftArrow from "@/components/icons/LeftArrow";
+import TextButton from "@/components/common/TextButton";
+import SearchInput from "@/components/SearchInput";
+import UserInfo from "@/components/UserInfo";
 
 interface SearchProps {
   me: TUser;

@@ -1,12 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import Photo from "./icons/Photo";
-import File from "./icons/File";
 import { TAttachment, TIncomingMessage } from "@/utils/types";
-import FilePreview from "./FilePreview";
-import ImagePreview from "./ImagePreview";
-import Plus from "./icons/Plus";
-import Send from "./icons/Send";
 import { isFileImage } from "@/utils/helpers";
+import FilePreview from "@/components/previews/File.preview";
+import ImagePreview from "@/components/previews/Image.preview";
+import Plus from "@/components/icons/Plus";
+import Send from "@/components/icons/Send";
 
 interface MessageInputProps {
   onSubmit: (incomingMessage: TIncomingMessage) => void;

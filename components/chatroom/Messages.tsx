@@ -1,13 +1,13 @@
-import { TChat, TChatEntity, TMessage, TUser } from "@/utils/types";
 import { useEffect, useMemo, useRef, useState } from "react";
-import Copy from "./icons/Copy";
-import Remove from "./icons/Remove";
-import Copied from "./icons/Copied";
+import { TChat, TChatEntity, TMessage, TUser } from "@/utils/types";
 import { formatDate, formatTime, isInSameDay } from "@/utils/helpers";
-import Check from "./icons/Check";
-import CheckDouble from "./icons/Check-Double";
-import FileAttachment from "./FileAttachment";
-import ImageAttachment from "./ImageAttachment";
+import FileAttachment from "@/components/previews/FileAttachment.preview";
+import ImageAttachment from "@/components/previews/ImageAttachment.preview";
+import Copy from "@/components/icons/Copy";
+import Remove from "@/components/icons/Remove";
+import Copied from "@/components/icons/Copied";
+import Check from "@/components/icons/Check";
+import CheckDouble from "@/components/icons/Check-Double";
 
 interface MessagesProps {
   messages: TMessage[];
@@ -172,7 +172,12 @@ function MessageBox(props: MessageBoxProps) {
         >
           {/* Read status */}
           {isMine && (
-            <div className={"self-center mr-0.5 text-secondary group-hover/container:flex" + (isRead ? " hidden" : "")}>
+            <div
+              className={
+                "self-center mr-0.5 text-secondary group-hover/container:flex" +
+                (isRead ? " hidden" : "")
+              }
+            >
               {isRead ? <CheckDouble /> : <Check />}
             </div>
           )}

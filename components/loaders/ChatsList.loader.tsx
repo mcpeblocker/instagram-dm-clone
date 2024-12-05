@@ -1,4 +1,4 @@
-import { ChatThumbnailLoader } from "./ChatThumbnail.loader";
+import { ChatThumbnailLoader } from "@/components/loaders/ChatThumbnail.loader";
 
 export default function ChatsListLoader() {
   return (

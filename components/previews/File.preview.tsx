@@ -1,36 +1,28 @@
 import { trimContent } from "@/utils/helpers";
-import File from "./icons/File";
-import Cross from "./icons/Cross";
-import Image from "next/image";
+import File from "@/components/icons/File";
+import Cross from "@/components/icons/Cross";
 
-interface ImagePreviewProps {
-  image: File;
+interface FilePreviewProps {
+  file: File;
   onDelete: () => void;
 }
 
-export default function ImagePreview(props: ImagePreviewProps) {
+export default function FilePreview(props: FilePreviewProps) {
   const handleClick = () => {
-    const url = URL.createObjectURL(props.image);
+    const url = URL.createObjectURL(props.file);
     window.open(url, "_blank");
   };
 
   return (
     <div className="relative rounded-md text-contrast">
-      {/* Preview */}
       <div
         className="flex flex-col items-center gap-2 p-2 cursor-pointer opacity-60 hover:opacity-100"
         onClick={handleClick}
       >
         <div className="w-16 h-16 flex justify-center items-center">
-          <Image
-            src={URL.createObjectURL(props.image)}
-            alt="Preview"
-            width={64}
-            height={64}
-            className="w-16 h-16 object-cover rounded-md"
-          />
+          <File />
         </div>
-        <span className="text-xs">{trimContent(props.image.name, 10)}</span>
+        <span className="text-xs">{trimContent(props.file.name, 10)}</span>
       </div>
       <button
         type="button"

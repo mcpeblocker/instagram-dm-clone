@@ -1,4 +1,4 @@
-import SearchIcon from "./icons/SearchIcon";
+import SearchIcon from "@/components/icons/SearchIcon";
 
 interface SearchInputProps {
   onSearch: (query: string) => void;

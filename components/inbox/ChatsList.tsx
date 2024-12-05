@@ -1,6 +1,6 @@
-import ChatsListBlank from "./blanks/ChatsList.blank";
-import ChatThumbnail from "./ChatThumbnail";
 import { TChatThumbnail } from "@/utils/types";
+import ChatsListBlank from "@/components/blanks/ChatsList.blank";
+import ChatThumbnail from "@/components/ChatThumbnail";
 
 interface ChatsListProps {
   chatThumbnails: TChatThumbnail[];

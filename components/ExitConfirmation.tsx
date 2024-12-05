@@ -1,4 +1,4 @@
-import TextButton from "./TextButton";
+import TextButton from "@/components/common/TextButton";
 
 interface ExitConfirmationProps {
   onCancel: () => void;

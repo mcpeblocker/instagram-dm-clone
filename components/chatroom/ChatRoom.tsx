@@ -1,10 +1,10 @@
-import { TChat, TUser, TMessage, TIncomingMessage } from "@/utils/types";
-import { Messages } from "./Messages";
 import { useEffect, useMemo, useState } from "react";
+import { TChat, TUser, TMessage, TIncomingMessage } from "@/utils/types";
 import api from "@/utils/api";
-import MessageInput from "./MessageInput";
-import LeftArrow from "./icons/LeftArrow";
-import Logout from "./icons/Logout";
+import { Messages } from "@/components/chatroom/Messages";
+import MessageInput from "@/components/chatroom/MessageInput";
+import LeftArrow from "@/components/icons/LeftArrow";
+import Logout from "@/components/icons/Logout";
 
 interface ChatRoomProps {
   chat: TChat;

@@ -1,5 +1,5 @@
 import { formatFileSize, trimContent } from "@/utils/helpers";
-import File from "./icons/File";
+import File from "@/components/icons/File";
 
 interface FileAttachmentProps {
   file: File;

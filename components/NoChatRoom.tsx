@@ -1,14 +1,18 @@
-import Messenger from "./icons/Messenger";
+import Messenger from "@/components/icons/Messenger";
 
-export function NoChatRoom() {
+export default function NoChatRoom() {
   return (
     <div className="flex flex-col gap-1 justify-center items-center h-full">
       <div className="my-2 border-2 border-contrast rounded-full p-5">
         <Messenger />
       </div>
-      <span className="text-xl">Your messages</span>
+      <span className="text-xl">
+        {/* en: Your messages */}
+        당신의 메시지
+      </span>
       <span className="text-sm text-secondary">
-        Send a message to start a chat.
+        {/* en: Send a message to start a chat. */}
+        채팅을 시작하려면 메시지를 보내세요.
       </span>
     </div>
   );

@@ -1,20 +1,15 @@
 "use client";
 
 import React, { useEffect, useMemo } from "react";
-import ChatsList from "@/components/ChatsList";
-import { TChat, TUser } from "@/utils/types";
-import api from "@/utils/api";
-import { TChatThumbnail } from "@/utils/types";
 import { useRouter, useSearchParams } from "next/navigation";
-import ChatRoom from "@/components/ChatRoom";
-import { NoChatRoom } from "./NoChatRoom";
-import LeftArrow from "./icons/LeftArrow";
-import TextButton from "./TextButton";
-import ChatsListLoader from "./loaders/ChatsList.loader";
+import { TChat, TUser, TChatThumbnail } from "@/utils/types";
 import { loadChatThumbnails } from "@/utils/helpers";
-import Inbox from "./Inbox";
-import Search from "./Search";
-import ExitConfirmation from "./ExitConfirmation";
+import api from "@/utils/api";
+import ChatRoom from "@/components/chatroom/ChatRoom";
+import NoChatRoom from "@/components/NoChatRoom";
+import Inbox from "@/components/inbox/Inbox";
+import Search from "@/components/Search";
+import ExitConfirmation from "@/components/ExitConfirmation";
 
 export default function Direct() {
   // States

@@ -1,5 +1,5 @@
 import { TSearchResult } from "@/utils/types";
-import Avatar from "./Avatar";
+import Avatar from "@/components/common/Avatar";
 
 interface UserInfoProps {
   result: TSearchResult;

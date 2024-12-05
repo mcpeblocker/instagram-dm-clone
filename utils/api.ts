@@ -85,6 +85,7 @@ async function newChat(otherUser: TUser, me: TUser): Promise<TChat> {
 async function leaveChat(chat: TChat): Promise<void> {
     // await wait();
     data.chats = data.chats.filter((c) => c.id !== chat.id);
+    data.messages = data.messages.filter((m) => m.chatId !== chat.id);
 }
 
 // Utility function to simulate time delay

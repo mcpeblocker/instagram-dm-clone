@@ -1,7 +1,7 @@
 import { TChatThumbnail } from "@/utils/types";
-import Avatar from "./Avatar";
 import { formatSinceDate, trimContent } from "@/utils/helpers";
-import UnreadIndicator from "./icons/UnreadIndicator";
+import Avatar from "@/components/common/Avatar";
+import UnreadIndicator from "@/components/icons/UnreadIndicator";
 
 interface ChatThumbnailProps {
   thumbnail: TChatThumbnail;

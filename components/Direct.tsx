@@ -130,7 +130,7 @@ export default function Direct() {
       {/* List of chats (sidebar on desktop) */}
       <div
         className={
-          "w-full md:w-1/3 flex flex-col border-r-bg-secondary" +
+          "w-full md:w-1/3 flex flex-col border-r-secondary-bg" +
           (isInbox ? "" : " hidden md:flex")
         }
         style={{ borderRightWidth: 1 }}
